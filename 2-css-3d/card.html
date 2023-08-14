@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .world {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80vw;
+        height: 80vh;
+        background: #fff000;
+        perspective: 500px;
+      }
+
+      .card {
+        position: relative;
+        width: 100px;
+        height: 150px;
+        margin: 1em;
+        transform: rotateY(0deg);
+        transition: 1s;
+        transform-style: preserve-3d;
+        /* preserve-3d는 인터넷익스플로어에서는 적용되지 않는다. */
+        /* transform-origin: left; */
+      }
+
+      .card-side {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5em;
+        font-size: 1.5rem;
+        /* rem의 변화에 따라 em이 변한다. 위와 같은 경우, border-radius가 font-size에 비례하여 변화한다. */
+
+        /* safari에서 backface-visibility를 사용하기 위해, webkit 계열이니까  */
+        -webkit-backface-visibility: hidden;
+        /* 모질라 계열은 */
+        -moz-backface-visibility: hidden;
+        /* vandor prefix라고 한다 */
+        backface-visibility: hidden;
+        /* 순서는 상관 없기는 하지만 마지막은 항상 기본을 쓰는 걸 추천 */
+      }
+
+      .card-side-front {
+        z-index: 1;
+        background: white;
+      }
+
+      .card-side-back {
+        background: red;
+        transform: rotateY(180deg);
+      }
+
+      .world:hover .card {
+        transform: rotateY(-180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="world">
+      <div class="card">
+        <div class="card-side card-side-front">F</div>
+        <div class="card-side card-side-back">B</div>
+      </div>
+    </div>
+  </body>
+</html>

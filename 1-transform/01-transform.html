@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box-container {
+        display: flex;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        background: rgba(255, 255, 0, 0.7);
+      }
+
+      .box:hover {
+        transform: scale(1.2) rotate(15deg);
+        transform-origin: 100% 100%; /* transform의 기준점을 바꾸는 기능 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Transform</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+      repellendus voluptatum cum corrupti enim, libero numquam quaerat illum
+      quos dolore in obcaecati quae, necessitatibus vero sint totam, laboriosam
+      veritatis odit.
+    </p>
+    <div class="box-container">
+      <div class="box">A</div>
+      <div class="box">B</div>
+      <div class="box">C</div>
+      <div class="box">D</div>
+      <div class="box">E</div>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque ex
+      cupiditate inventore, voluptas nihil eaque beatae ea ab repellendus
+      assumenda debitis quis mollitia. Hic, aliquid quas sapiente voluptates eos
+      maxime!
+    </p>
+  </body>
+</html>
