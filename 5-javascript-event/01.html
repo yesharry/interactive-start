@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      .characters {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background: #fff000;
+      }
+      .ilbuni {
+        width: 100px;
+        cursor: pointer;
+      }
+      .characters .ilbuni {
+        display: inline-block;
+      }
+      .special {
+        border: 10px dashed red;
+      }
+    </style>
+    <script>
+      // window.addEventListener("load", function () {
+      //   const ilbuni = document.querySelector(".ilbuni.c");
+      // });
+      // 문서 전체가 로드가 끝나면, 이 함수를 실행해주세요. 라는 의미
+
+      // window.addEventListener("DOMContentLoaded", function () {});
+      // DOM요소가 로드되면, 함수를 실행하라는 의미
+
+      // <head> 안에 <script>를 작성하려면 위와 같이 로드해주는 작업을 필히 써주어야 한다.
+      // 그래서 강사님은 <body> 태그 안의 맨 아래에 써준다고 하심.
+    </script>
+  </head>
+  <body>
+    <div class="characters">
+      <div class="ilbuni a">
+        <img src="images/ilbuni_0.png" alt="일분이" />
+      </div>
+      <div class="ilbuni b">
+        <img src="images/ilbuni_1.png" alt="일분이" />
+      </div>
+      <div class="ilbuni c">
+        <img src="images/ilbuni_2.png" alt="일분이" />
+      </div>
+      <div class="ilbuni d">
+        <img src="images/ilbuni_3.png" alt="일분이" />
+      </div>
+    </div>
+
+    <script>
+      // 직접 타이핑 해보세요
+      (function () {
+        const characters = document.querySelector(".characters");
+
+        function clickHandler(e) {
+          // console.log(this);
+          // EventListener 안에서 this는 바로 클릭된 애를 가리킨다.
+          // console.log(e.currentTarget);
+          // this나 currentTarget이 가리키는 것은
+          // 내가 클릭한 걔가 아니고, addEventListener로 event가 등록되어 있는 객체이다.
+
+          // 만약, 내가 직접 클릭한 것을 알아내고 싶다! 할 때는
+          console.log(e.target);
+          //
+        }
+
+        characters.addEventListener("click", clickHandler);
+      })();
+    </script>
+  </body>
+</html>
