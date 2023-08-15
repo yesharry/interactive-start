@@ -60,21 +60,41 @@
 
     <script>
       // 직접 타이핑 해보세요
+      //   (function () {
+      //     const ilbuniGroup = document.querySelectorAll(".ilbuni");
+      //     const stage = document.querySelector(".stage");
+
+      //     function clickHandler(e) {
+      //       //   console.log(this);
+      //       //   console.log(e.currentTarget);
+      //       //   stage.removeChild(this);
+      //       this.parentNode.removeChild(this);
+      //     }
+
+      //     for (let i = 0; i < ilbuniGroup.length; i++) {
+      //       ilbuniGroup[i].addEventListener("click", clickHandler);
+      //     }
+      //   })();
+
+      // 이벤트 위임 => 이벤트 처리를 부모한테 위임을 하는것.
+      // stage한테 클릭 이벤트를 한 번만 걸어주고 stage한테 이벤트 처리를 해주는 것.
       (function () {
-        const ilbuniGroup = document.querySelectorAll(".ilbuni");
         const stage = document.querySelector(".stage");
 
         function clickHandler(e) {
-          //   console.log(this);
-          //   console.log(e.currentTarget);
-          //   stage.removeChild(this);
-          this.parentNode.removeChild(this);
+          console.log(this);
+          console.log(e.currentTarget);
+          // return stage
+
+          if (e.target.classList.contains("ilbuni")) {
+            stage.removeChild(e.target);
+          }
         }
 
-        for (let i = 0; i < ilbuniGroup.length; i++) {
-          ilbuniGroup[i].addEventListener("click", clickHandler);
-        }
+        stage.addEventListener("click", clickHandler);
       })();
+      //   이벤트 위임의 장점 => 스크롤할 때마다 다음 데이터들이 로드되는 요즘 페이지들..
+      //   데이터 수십개가 로드될 때마다 이벤트를 하나하나 걸지 않아도 된다.
     </script>
   </body>
 </html>

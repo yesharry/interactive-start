@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        padding: 20px;
+        border: 5px solid black;
+      }
+
+      /* .elem2 {
+        pointer-events: none;
+      } */
+      /* 위와 같이 해도 되지만 이거는 js 강의니까 script로 해보자자자자 */
+    </style>
+  </head>
+  <body>
+    <div class="elem1" data-id="about">
+      <div class="elem2">
+        <div class="elem3">elem3</div>
+      </div>
+    </div>
+
+    <script>
+      // elem3 영역을 클릭하든, elem2 영역을 클릭하든, 어디를 클릭하든지 간에
+      // 제일 바깥 상자(data-id='about')만 잡아내고 싶을 때
+      const elem1 = document.querySelector(".elem1");
+      elem1.addEventListener("click", (e) => {
+        // console.log(e.target.dataset.id);
+        console.log(e.target.closest(".elem1"));
+        // closest는 .elem1에 해당하는 가장 가까운 e.target 객체의 부모를 잡아낸다.
+      });
+    </script>
+  </body>
+</html>
