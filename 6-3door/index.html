@@ -107,22 +107,32 @@
         const stageElem = document.querySelector(".stage");
         let currentItem; // 현재 활성화된 아템(열린 문)을 저장하는 변수
 
+        function active(elem) {
+          elem.classList.add("door-opened"); // 활성화
+          currentItem = elem;
+        }
+
+        function inactive(elem) {
+          elem.classList.remove("door-opened"); // 비활성화
+        }
+
         function doorHandler(e) {
           const targetElem = e.target;
 
           if (currentItem) {
-            currentItem.classList.remove("door-opened");
+            inactive(currentItem);
           }
           // 변수 currentItem을 체크해서 비활성화하기
 
           if (targetElem.classList.contains("door-body")) {
-            targetElem.parentNode.classList.add("door-opened");
-            currentItem = targetElem.parentNode;
+            active(targetElem.parentNode);
           }
           // 지금 선택한 것을 활성화 시키기
         }
 
         stageElem.addEventListener("click", doorHandler);
+
+        active(document.querySelector(".door:nth-child(2)")); // 페이지 로드 했을 때 첫 번째(빨간문)열리고 시작하기
       })();
     </script>
   </body>
