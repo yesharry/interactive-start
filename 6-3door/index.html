@@ -60,6 +60,7 @@
         width: 100%;
         height: 100%;
         transition: 0.5s;
+        cursor: pointer;
       }
       .door:nth-child(1) .door-body {
         background: rgba(255, 0, 0, 0.7);
@@ -105,34 +106,41 @@
     <script>
       (function () {
         const stageElem = document.querySelector(".stage");
-        let currentItem; // 현재 활성화된 아템(열린 문)을 저장하는 변수
+        let currentItemNumber; // 현재 활성화된 아템(열린 문)을 저장하는 변수
 
-        function active(elem) {
+        const doors = document.querySelectorAll(".door");
+        doors.forEach((door, index) => {
+          door.dataset.number = index;
+        }); // 각 문에 data-number를 세팅(0, 1, 2)
+
+        function active(number) {
+          const elem = document.querySelector(`.door[data-number='${number}']`);
           elem.classList.add("door-opened"); // 활성화
-          currentItem = elem;
+          currentItemNumber = number;
         }
 
-        function inactive(elem) {
+        function inactive(number) {
+          const elem = document.querySelector(`.door[data-number='${number}']`);
           elem.classList.remove("door-opened"); // 비활성화
         }
 
         function doorHandler(e) {
           const targetElem = e.target;
 
-          if (currentItem) {
-            inactive(currentItem);
+          if (currentItemNumber >= 0) {
+            inactive(currentItemNumber);
           }
           // 변수 currentItem을 체크해서 비활성화하기
 
           if (targetElem.classList.contains("door-body")) {
-            active(targetElem.parentNode);
+            active(targetElem.parentNode.dataset.number);
           }
           // 지금 선택한 것을 활성화 시키기
         }
 
         stageElem.addEventListener("click", doorHandler);
 
-        active(document.querySelector(".door:nth-child(2)")); // 페이지 로드 했을 때 첫 번째(빨간문)열리고 시작하기
+        active(0); // 페이지 로드 했을 때 첫 번째(빨간문)열리고 시작하기
       })();
     </script>
   </body>
