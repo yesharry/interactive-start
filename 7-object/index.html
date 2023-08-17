@@ -13,12 +13,16 @@
       function Person(nickname, age) {
         this.nickname = nickname;
         this.age = age;
-        this.introduce = function () {
-          console.log(
-            `안녕하세요? 저는 ${nickname}이고, 나이는 ${age}살이에요.`
-          );
-        };
       }
+
+      Person.prototype.introduce = function () {
+        console.log(
+          `안녕하세요? 저는 ${this.nickname}이고, 나이는 ${this.age}살이에요.`
+        );
+      };
+      // prototype 객체라는 것은 함수 하나에 쌍으로 하나 있는거..? 뭔소리;
+      // 개별 인스턴스들이 공유를 한다고 보면 된다..?
+      // 그래서 instance가 늘어난다고 해서 introduce가 늘어나는 건 아니라는 거다.
 
       // 인스턴스(instance)
       const person1 = new Person("일분이", 10);
@@ -26,6 +30,9 @@
       // 함수가 생성자로서 호출되게 하고 싶으면, 앞에 new를 적어주면 된다.
       // 바로 이렇게 new를 해줬기 때문에 각각 개별 객체를 this가 가리키게 된거다.
       // 위처럼 생성자 함수로 생성해낸 각각의 개별 객체 person1과 person2를 인스턴스라고 한다.
+
+      // 다시 정리해보면, nickname이나 age처럼 각각 다른 인스턴스마다 다른 값으로 세팅이 되어야 하는 애들은 생성자 안에 this. 형태로 해주면 된다.
+      // 그리고 introduce 매서드처럼 그냥 똑같이 공유하면 되는 애들은 prototype 객체에다 정의를 해주면 된다. -> 생성자 함수하고 한 쌍으로 생각하면 된다.
 
       person1.introduce();
       person2.introduce();
