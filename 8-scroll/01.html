@@ -59,9 +59,29 @@
     <script>
       (function () {
         const outputElem = document.querySelector(".output");
+        const ilbuniElem = document.querySelector(".ilbuni");
+
+        function showValue() {
+          let posY = ilbuniElem.getBoundingClientRect().top;
+          outputElem.innerHTML = posY;
+
+          if (posY < window.innerHeight * 0.2) {
+            ilbuniElem.classList.add("zoom");
+          } else {
+            ilbuniElem.classList.remove("zoom");
+          }
+        }
+
         window.addEventListener("scroll", function () {
-          outputElem.innerHTML = window.scrollY;
+          // outputElem.innerHTML = window.scrollY;
           // scrollY -> scroll을 얼만큼 했는지 px로 나타내주는 속성
+          // outputElem.innerHTML = ilbuniElem.offsetTop;
+          // outputElem.innerHTML = ilbuniElem.getBoundingClientRect().top;
+          // getBoundingClientRect -> 현재 엘리먼트의 크기와 위치를 가지고 있는 객체
+          // 그러나 위의 내용들은 따로 함수로 빼줄 것임.
+          // 왜냐하면 이벤트리스너는 최대한 간단하게 써주는 것이 좋기 때문
+
+          showValue();
         });
       })();
     </script>
