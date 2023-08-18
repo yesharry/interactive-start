@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transition</title>
+    <style>
+      .ball {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        /* margin: -15px 0 0 -15px; 원 가운데에 위치하게 하기 방법1 */
+        border-radius: 50%;
+        background: red;
+        transition: 1s;
+      }
+
+      .ball.end {
+        background: dodgerblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ball"></div>
+
+    <script>
+      const ballElem = document.querySelector(".ball");
+
+      window.addEventListener("click", function (e) {
+        // ballElem.style.transform =
+        //   "translate(" + (e.clientX - 15) + "px," + (e.clientY - 15) + "px)";
+
+        ballElem.style.transform = `translate(${e.clientX - 15}px, ${
+          e.clientY - 15
+        }px)`;
+
+        ballElem.addEventListener("transitionstart", function (e) {
+          ballElem.classList.add("end");
+          console.log(e.elapsedTime); // transition의 duration의 값이 나옴
+          console.log(e.propertyName);
+          // transitionend -> transition이 끝난 후 이벤트 실행
+          // transitionstart -> transition이 시작되자마자 이벤트 실행
+        });
+      });
+    </script>
+  </body>
+</html>
